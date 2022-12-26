@@ -1,0 +1,41 @@
+<section class="vh-100" style="background-color: #508bfc">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <!-- <div class="col-12 col-md-8 col-lg-6 col-xl-5"> -->
+      <div>
+        <h5 class="text-light">Hi,<%=locals.studentUser%></h5>
+      </div>
+      <div
+        class="card shadow-2-strong col-12 col-md-8 col-lg-6 col-xl-5"
+        style="border-radius: 1rem"
+      >
+        <div class="card-body p-5">
+          <h3 class="mb-5 border-bottom pb-3 mb-3">Score Card</h3>
+          <!-- <%if(locals.logout){%>
+            <div class="alter alert-success text-center" setTimeout(1)>
+              <%=logout%>
+            </div>
+            <%}%> -->
+          <div>
+            <label class="col-md-3">Name:</label>
+            <span><%=scoreCard.studentName%></span>
+          </div>
+          <div>
+            <label class="col-md-3">Roll No:</label>
+            <span><%=scoreCard.rollNo%></span>
+          </div>
+          <div>
+            <label class="col-md-3">Score:</label>
+            <span style="color: green"
+              ><%=scoreCard.score%>/<%=scoreCard.maximumMarks%></span
+            >
+          </div>
+          <div>
+            <label class="col-md-3">Supervisor:</label>
+            <span style="color: red"><%=scoreCard.supervisor%></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

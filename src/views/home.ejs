@@ -1,0 +1,33 @@
+<section class="vh-100" style="background-color: #508bfc">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <!-- <div class="col-12 col-md-8 col-lg-6 col-xl-5"> -->
+      <div>
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+            <h3 class="mb-5 border-bottom pb-3 mb-3">Login As</h3>
+            <!-- <%if(locals.logout){%>
+            <div class="alter alert-success text-center" setTimeout(1)>
+              <%=logout%>
+            </div>
+            <%}%> -->
+            <div class="text-center justify-content-center">
+              <a
+                href="/api/teacher/teacherLogin"
+                class="btn btn-primary btn-lg rounded-pill"
+                style="margin-top: 5px"
+                >Teacher</a
+              >
+              <a
+                href="/api/result"
+                class="btn btn-primary btn-lg rounded-pill"
+                style="margin-top: 5px"
+                >Student</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

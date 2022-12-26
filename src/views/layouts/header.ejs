@@ -1,0 +1,22 @@
+<!-- <header class="my-4" style="background-color: #508bfc">
+  <h3 class="text-center nav justify-content-center border-bottom pb-3 mb-3">
+    <b>Result Management System</b>
+  </h3>
+</header> -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <span class="navbar-brand"><h4>Result Managment System</h4></span>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li>
+        <%if(locals.user||locals.studentUser){%>
+          <form action="/api/teacher/logout" method="GET">
+            <button class="btn btn-danger position-relative">Logout</button>
+          </form>
+        </div>
+        <%}%>
+      </li>
+    </ul>
+
+</nav>

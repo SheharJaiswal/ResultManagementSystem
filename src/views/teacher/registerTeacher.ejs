@@ -1,0 +1,78 @@
+ <section class="vh-100" style="background-color: #508bfc">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+            <h3 class="mb-5">Teacher Registration</h3>
+            <form action="/api/teacher/register"method="POST">
+              <div class="form-group form-outline mb-4">
+                <input
+                  placeholder="Name"
+                  type="text"
+                  name="teacherName"
+                  class="form-control form-control-lg"
+                  required
+                />
+              </div>
+
+            <div class="form-outline mb-4">
+              <input
+              oninvalid="setCustomValidity('Please enter atleast 8 charachter username without whitespace')"
+                placeholder="Username"
+                type="email"
+                name="teacherUsername"
+                class="form-control form-control-lg"
+                required
+              />
+            </div>
+            <div class="form-group form-outline mb-4">
+              <input
+                placeholder="Password"
+                pattern="(\w{8,})"
+                type="password"
+                oninvalid="setCustomValidity('Please enter atleat 8 digit password')"
+                name="password"
+                id="password"
+                required
+                class="form-control form-control-lg"
+              />
+            </div>
+            <div class="form-group form-outline mb-4">
+              <input
+                placeholder="Confirm Password"
+                type="confirmPassword"
+                name="confirmPassword"
+                id="confirmPassword"
+                onkeyup='check();'
+                required
+                class="form-control form-control-lg"
+              />
+              <span id="message"></span>
+            </div>
+              <button class="btn btn-primary btn-lg btn-block rounded-pill" type="submit">
+              Register
+            </button>
+          </form>
+            <hr class="my-4" />
+            <div style="text-align: left;"><a href="/"><h5><<- Back</h3></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  var check = function() {
+    if (document.getElementById('password').value==document.getElementById('confirmPassword').value)
+     {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = '';
+    document.getElementById('confirmPassword').style.color = 'black';
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('confirmPassword').style.color = 'red';
+    document.getElementById('message').innerHTML = 'Password does not match';
+  }
+}
+</script>

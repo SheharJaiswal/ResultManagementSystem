@@ -1,0 +1,70 @@
+<section class="vh-100" style="background-color: #508bfc">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <!-- <div class="col-12 col-md-8 col-lg-6 col-xl-5"> -->
+        <div>
+          <h5 class="text-light">Hi,<%=locals.user%></h5>
+        </div>
+        <div class="card-body p-4">
+          <section class="vh-100">
+            <a
+              href="/api/teacher/addResult"
+              class="btn btn-warning"
+              style="margin-bottom: 15px"
+              >Add Result</a
+            >
+            <div class="card-body" style="background-color: #508bfc">
+              <form>
+                <table class="table align-middle mb-0 bg-white">
+                  <thead class="bg-light">
+                    <tr>
+                      <th>Student Name</th>
+                      <th>Roll Number</th>
+                      <th>D.O.B</th>
+                      <th>Score</th>
+                      <th>M.M</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if(results.length){ for(var i = 0; i< results.length;
+                    i++) {%>
+                    <form>
+                      <tr>
+                        <td><%= results[i].studentName%></td>
+                        <td><%= results[i].rollNo%></td>
+                        <td><%= results[i].dob%></td>
+                        <td><%= results[i].score%></td>
+                        <td><%= results[i].maximumMarks%></td>
+                        <td>
+                          <a
+                            class="btn btn-success edit"
+                            href="dashboard/edit/<%-results[i].id%>"
+                          >
+                            Edit</a
+                          >
+                          <a href="dashboard/delete/<%-results[i].id%>">
+                            <img
+                              style="margin: 0px 1px"
+                              src="https://img.icons8.com/ios-glyphs/30/000000/filled-trash.png"
+                              name="delete"
+                            />
+                          </a>
+                        </td>
+                      </tr>
+                      <% } }else{ %>
+                      <tr>
+                        <td colspan="3">No user</td>
+                      </tr>
+                    </form>
+                    <% } %>
+                  </tbody>
+                </table>
+              </form>
+            </div>
+          </section>
+        </div>
+        </div>
+    </div>
+  </div>
+</section>

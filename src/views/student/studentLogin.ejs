@@ -1,0 +1,52 @@
+  <section class="vh-100" style="background-color: #508bfc">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <!-- <div class="col-12 col-md-8 col-lg-6 col-xl-5"> -->
+        <div>
+          <div class="card shadow-2-strong" style="border-radius: 1rem">
+            <div class="card-body p-5 text-center">
+              <h3 class="mb-5">Student Login</h3>
+              <form action="/api/result/login" method="POST">
+              <div class="form-outline mb-4">
+                <input
+                  placeholder="Student Name"
+                  type="text"
+                  name="studentName"
+                  id="studentName"
+                  class="form-control form-control-lg"
+                />
+              </div>
+
+              <div class="form-outline mb-4">
+                <input
+                  placeholder="Roll Number"
+                  type="text"
+                  name="rollNo"
+                  id="rollNo"
+                  class="form-control form-control-lg"
+                />
+              </div>
+              <div class="form-outline mb-4">
+                <input
+                  placeholder="D.O.B."
+                  type="date"
+                  name="dob"
+                  id="dob"
+                  class="form-control form-control-lg"
+                />
+              </div>
+              <div class="row">
+                <button class="btn btn-primary btn-lg btn-block rounded-pill" type="submit">
+                  Get Result
+                </button>
+              </div>
+
+              </form>
+              <hr class="my-4" />
+              <div style="text-align: left;"><a href="/"><h5><<- Back</h3></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
