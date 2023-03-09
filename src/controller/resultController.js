@@ -1,8 +1,7 @@
-const db = require("../models");
-const Result = db.results;
+const resultCollection = require("../models/resultModel.js");
 
 const loginStudent = async (req, res) => {
-  const student = await Result.findOne({
+  const student = await resultCollection.findOne({
     where: [
       { studentName: req.body.studentName },
       { rollNo: req.body.rollNo },
@@ -25,7 +24,7 @@ const loginStudent = async (req, res) => {
 };
 const studentDashboard = async (req, res) => {
   if (req.session.studentUser) {
-    const result = await Result.findOne({
+    const result = await resultCollection.findOne({
       where: [
         { rollNo: req.session.rollNo },
         { studentName: req.session.studentUser },
@@ -41,7 +40,7 @@ const studentDashboard = async (req, res) => {
   }
 };
 const getAllResult = async (req, res) => {
-  const results = await Result.findAll();
+  const results = await resultCollection.find();
   res.status(200).send(results);
 };
 

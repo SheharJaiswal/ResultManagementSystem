@@ -1,23 +1,21 @@
-const { localsName } = require("ejs");
-const db = require("../models");
-const Teacher = db.teachers;
-const Result = db.results;
+const teacherCollection = require("../models/teacherModel.js");
+const resultCollection = require("../models/resultModel.js");
 const bcrypt = require("bcrypt");
-
+const token = "sjdjdndnddkkdk";
 const registerTeacher = async (req, res) => {
-  await bcrypt.hash(req.body.password, 10).then((hash) => {
+  await bcrypt.hash(req.body.password, 10).then(async (hash) => {
     console.log(hash);
-    var info = {
+    let info = {
       teacherName: req.body.teacherName,
       teacherUsername: req.body.teacherUsername,
       password: hash,
     };
-    Teacher.create(info);
+    await teacherCollection.insertMany([info]);
   });
   res.redirect("/");
 };
 const getAllResult = async (req, res) => {
-  const results = await Result.findAll();
+  const results = await resultCollection.find();
   res.status(200).send(results);
 };
 
@@ -26,8 +24,8 @@ const getRegisterPage = async (req, res) => {
 };
 
 const loginTeacher = async (req, res) => {
-  const teacher = await Teacher.findOne({
-    where: { teacherUsername: req.body.username },
+  const teacher = await teacherCollection.findOne({
+    teacherUsername: req.body.username,
   });
 
   if (teacher) {
@@ -37,6 +35,10 @@ const loginTeacher = async (req, res) => {
     );
     if (password_valid) {
       req.session.user = teacher.teacherName;
+      res.cookie("user-token", token, {
+        expires: new Date(Date.now() * 5000),
+        httpOnly: true,
+      });
       res.redirect("dashboard");
       // res.end("Login Successful...");
     } else {
@@ -61,7 +63,7 @@ const addStudentResult = async (req, res) => {
         supervisor: req.session.user,
         maximumMarks: req.body.maxMarks,
       };
-      const result = await Result.create(detailResult);
+      const result = await resultCollection.insertMany([detailResult]);
       res.redirect("/api/teacher/dashboard");
     } else {
       res.render("404");
@@ -72,7 +74,8 @@ const addStudentResult = async (req, res) => {
 };
 const teacherDashboard = async (req, res) => {
   if (req.session.user) {
-    const results = await Result.findAll();
+    const filter = {};
+    const results = await resultCollection.find(filter);
     res.render("dashboard", {
       user: req.session.user,
       results: results,
@@ -95,7 +98,7 @@ const deleteResult = async (req, res) => {
 const getupdateResult = async (req, res) => {
   try {
     if (req.session.user) {
-      const result = await Result.findOne({
+      const result = await resultCollection.findById({
         where: {
           id: req.params.id,
         },
@@ -119,7 +122,7 @@ const postUpdateResult = async (req, res) => {
     dob: req.body.dob,
     supervisor: req.session.user,
   };
-  await Result.update(editResult, { where: { id: req.params.id } });
+  await resultCollection.findByIdAndUpdate(req.params.id, editResult);
   console.log("Updated Successfully");
   res.redirect("/api/teacher/dashboard");
 };
@@ -128,6 +131,7 @@ const logoutTeacher = (req, res) => {
     if (err) {
       res.send("Error");
     } else {
+      res.clearCookie("user-token");
       res.redirect("/");
     }
   });

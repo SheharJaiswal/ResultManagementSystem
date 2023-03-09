@@ -1,7 +1,8 @@
 const express = require("express");
+require("dotenv").config();
+const eurekaHelper = require("./eurekaHelper.js");
 const app = express();
-const port = 5000;
-const dbConnection = require("./connection/connectionString.js");
+const port = process.env.PORT || 5000;
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const { v4: uuidv4 } = require("uuid");
@@ -35,5 +36,5 @@ app.get("/", (req, res) => {
     logout: "Logout Sucessfully.....!",
   });
 });
-dbConnection();
 app.listen(port, () => console.log(`http://localhost:${port}`));
+eurekaHelper.registerWithEureka("result-service", port);

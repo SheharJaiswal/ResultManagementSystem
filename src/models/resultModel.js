@@ -1,30 +1,30 @@
-module.exports = (sequelize, DataTypes) => {
-  const Result = sequelize.define("result", {
-    studentName: {
-      type: DataTypes.STRING,
-      allowNull: false, // true by default
-    },
-    rollNo: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    score: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    dob: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    supervisor: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    maximumMarks: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    
-  });
-  return Result;
-};
+require("../db/connstring.js");
+const mongoose = require("mongoose");
+const resultSchema = mongoose.Schema({
+  studentName: {
+    type: String,
+    allowNull: false, // true by default
+  },
+  rollNo: {
+    type: String,
+    allowNull: false,
+  },
+  score: {
+    type: String,
+    allowNull: false,
+  },
+  dob: {
+    type: String,
+    allowNull: false,
+  },
+  supervisor: {
+    type: String,
+    allowNull: false,
+  },
+  maximumMarks: {
+    type: String,
+    allowNull: false,
+  },
+});
+const collection = new mongoose.model("collection", resultSchema);
+module.exports = collection;

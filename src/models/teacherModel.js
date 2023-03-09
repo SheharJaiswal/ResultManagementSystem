@@ -1,18 +1,19 @@
-module.exports = (sequelize, DataTypes) => {
-  const Teacher = sequelize.define("teacher", {
-    teacherName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    teacherUsername: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  });
-  return Teacher;
-};
+require("../db/connstring.js");
+const mongoose = require("mongoose");
+const teacherSchema = mongoose.Schema({
+  teacherName: {
+    type: String,
+    allowNull: false,
+  },
+  teacherUsername: {
+    type: String,
+    allowNull: false,
+    unique: true,
+  },
+  password: {
+    type: String,
+    allowNull: false,
+  },
+});
+const collection = new mongoose.model("collection43", teacherSchema);
+module.exports = collection;
